@@ -30,19 +30,21 @@ import java.util.List;
 public class ClimbStairs {
 
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
-        int result = sulotion(45,list);
+        int result = solution(45);
         System.out.println(result);
     }
 
-    public static int sulotion(int n, List<Integer> list){
-        if (n < 3) {
-            list.add(n,n);
-            return n;
+    private static int solution(int n) {
+        int[] arr = new int[n + 1];
+
+        return climb(n,arr);
+    }
+
+    private static int climb(int n, int[] arr) {
+        if (n < 3 ) return n;
+        if (arr[n] == 0){
+            arr[n] = climb(n-1,arr) + climb(n-2,arr);
         }
-        if (list.size() < n){
-            list.add(n,sulotion(n-1,list)+sulotion(n-2,list));
-        }
-        return   list.get(n);
+        return arr[n];
     }
 }
