@@ -18,9 +18,18 @@ package com.relyy.array;
  */
 public class RemoveElement {
     public static void main(String[] args) {
-        int[] nums = {0,1,2,2,3,0,4,2};
+        int[] nums = {2,2,2};//{2,1,2};//{0,1,2,2,3,0,4,2};
         int val = 2;
 
+        //int lastNotVal = getLastNotVal1(nums, val);
+        int lastNotVal = getLastNotVal2(nums,val);
+
+        for (int i = 0; i < lastNotVal; i++) {
+            System.out.println(nums[i]);
+        }
+    }
+
+    private static int getLastNotVal1(int[] nums, int val) {
         int lastNotVal = 0;
         for(int i = 0; i < nums.length; i++) {
             if (nums[i] != val) {
@@ -31,9 +40,21 @@ public class RemoveElement {
                 lastNotVal++;
             }
         }
+        return lastNotVal;
+    }
 
-        for (int num : nums) {
-            System.out.println(num);
-        }
+    private static int getLastNotVal2(int[] nums, int val) {
+        int lastNotVal = nums.length;
+        int i = 0;
+       while (i < lastNotVal){
+           if(nums[i] == val){
+               nums[i] = nums[lastNotVal-1];
+               lastNotVal--;
+               /**这里i并没有变化*/
+           }else {
+               i++;
+           }
+       }
+        return lastNotVal;
     }
 }

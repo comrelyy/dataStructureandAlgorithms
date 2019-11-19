@@ -1,6 +1,5 @@
 package com.relyy.binaryTreeTraversal;
 
-import org.apache.commons.collections.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +102,7 @@ public class BinaryTree<T> {
     }
 
     private void levelPrint(List<BinaryTreeNode> binaryTreeNodes){
-        if (CollectionUtils.isNotEmpty(binaryTreeNodes)) {
+        if (!binaryTreeNodes.isEmpty()) {
             StringBuffer buffer = new StringBuffer();
             buffer.append("{");
             List<BinaryTreeNode> childrenNode = new ArrayList<>();
