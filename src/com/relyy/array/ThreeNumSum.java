@@ -2,6 +2,7 @@ package com.relyy.array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -27,7 +28,11 @@ public class ThreeNumSum {
 		System.out.println(lists);
 	}
 
-	//base todo去重
+	/**
+	 * 暴力解法
+	 * @param nums
+	 * @return
+	 */
 	public static List<List<Integer>> baseSlove(int[] nums){
 		List<List<Integer>> result = new ArrayList<>();
 		Arrays.sort(nums);
@@ -55,7 +60,12 @@ public class ThreeNumSum {
 		return result;
 	}
 
-	public static List<List<Integer>> cricleFor2(int[] nums){
+	/**
+	 * 优化解法，一次循环
+	 * @param nums
+	 * @return
+	 */
+	public static List<List<Integer>> cricleFor1(int[] nums){
 		List<List<Integer>> result = new ArrayList<>();
 		Arrays.sort(nums);
 		int length = nums.length;
@@ -79,6 +89,43 @@ public class ThreeNumSum {
 					result.add(list);
 					while (nums[head] == nums[++head]);
 					while (nums[tail] == nums[--tail]);
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * 优化解法 两次循环 hash
+	 * @param nums
+	 * @return
+	 */
+	public static List<List<Integer>> cricleFor2(int[] nums){
+		List<List<Integer>> result = new ArrayList<>();
+		Arrays.sort(nums);
+		int length = nums.length;
+		HashMap<Integer, Integer> map = new HashMap<>();
+
+		for (int n = 0; n < nums.length; n++) {
+			map.put(nums[n],n);
+		}
+
+		for (int i = 0; i < length - 1; i++) {
+			if (nums[i] > 0 ) break;
+			if (i > 0 && nums[i] == nums[i-1]) continue;
+			for (int j = i + 1; j < length; j++){
+				if ( j > i + 1 && nums[j] == nums[j-1]) continue;
+				int k = 0 - (nums[i]+nums[j]);
+				if (map.containsKey(k)){
+					Integer index = map.get(k);
+					if (index > j){
+						List<Integer> list = new ArrayList<>();
+						list.add(nums[i]);
+						list.add(nums[j]);
+						list.add(k);
+						result.add(list);
+					}
 				}
 			}
 		}
