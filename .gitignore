@@ -37,3 +37,4 @@ dump.rdb
 transaction-logs
 layout.xml
 *.log
+*.vscode
