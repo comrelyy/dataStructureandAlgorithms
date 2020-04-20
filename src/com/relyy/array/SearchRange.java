@@ -28,4 +28,30 @@ public class SearchRange {
 		if (nums[tail] != target) return new int[]{-1,-1};
 		return new int[]{head,tail};
 	}
+
+	static int[] solution2(int[] nums,int target){
+		int length = nums.length;
+		int head = 0;
+		int tail = length - 1;
+		if(tail < 0 || nums[head] > target || nums[tail] < target) return new int[]{-1,-1};
+
+		while (head <= tail){
+			int mid = (head + tail) / 2;
+			if (nums[mid] > target){
+				tail = mid - 1;
+				continue;
+			}else if(nums[mid] < target) {
+				head = mid + 1;
+				continue;
+			}else if (nums[mid] == target){
+				if (mid == 0) {
+					while (tail < length && nums[tail++] == target);
+				}
+				if (mid == length -1){
+
+				}
+			}
+		}
+		return new int[]{head,tail};
+	}
 }
