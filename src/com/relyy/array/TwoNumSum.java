@@ -18,6 +18,12 @@ public class TwoNumSum {
 		int[] result2 = minusMethod(arr, target);
 	}
 
+	/**
+	 * 穷举法
+	 * @param arr
+	 * @param target
+	 * @return
+	 */
 	private static int[] enumMethod(int[] arr, int target) {
 		int length = arr.length;
 		for (int headIndex = 0; headIndex < length - 1; headIndex++){
@@ -31,6 +37,12 @@ public class TwoNumSum {
 		return null;
 	}
 
+	/**
+	 * 减法
+	 * @param arr
+	 * @param target
+	 * @return
+	 */
 	private static int[] minusMethod(int[] arr, int target) {
 		int length = arr.length;
 		HashMap<Integer, Integer> map = new HashMap<>(length);
